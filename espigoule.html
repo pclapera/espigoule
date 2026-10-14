@@ -7,9 +7,11 @@
   <meta name="description" content="Gîte de caractère L'Espigoule à Aiguèze, l'un des Plus Beaux Villages de France. Séjour au coeur des Gorges de l'Ardèche, Gard, Occitanie.">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap">
 
+  <!-- Chargement du fichier de contenu -->
+  <script src="config.js"></script>
+
   <style>
     /* === Design tokens - Provence sauvage : ocre, pierre, garrigue === */
-    /* Layout : hero pleine hauteur, sections alternées, footer chaleureux */
     :root {
       --bg:         #faf7f2;
       --bg-alt:     #f0ebe0;
@@ -154,7 +156,6 @@
       display: block;
       opacity: 0.75;
     }
-    /* Motif garrigue dessiné en CSS */
     .hero-texture {
       position: absolute;
       inset: 0;
@@ -613,83 +614,6 @@
     .poi-name { font-weight: 600; font-size: 0.95rem; color: var(--fg); margin-bottom: 0.1rem; }
     .poi-desc { font-size: 0.85rem; color: var(--fg-light); }
 
-    /* TARIFS */
-    #tarifs { background: var(--bg-alt); }
-    .tarifs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    .tarif-card {
-      background: var(--bg);
-      padding: 2rem;
-      border-radius: 3px;
-      text-align: center;
-      position: relative;
-      border: 1px solid var(--stone);
-    }
-    .tarif-card.featured {
-      border-color: var(--accent);
-      background: var(--accent);
-      color: #fff;
-    }
-    .tarif-card.featured .tarif-price,
-    .tarif-card.featured .tarif-period,
-    .tarif-card.featured .tarif-note { color: rgba(255,255,255,0.9); }
-    .tarif-tag {
-      position: absolute;
-      top: -0.75rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent-2);
-      color: #fff;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.8rem;
-      border-radius: 2px;
-      white-space: nowrap;
-    }
-    .tarif-season {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: inherit;
-    }
-    .tarif-card.featured .tarif-season { color: #fff; }
-    .tarif-price {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--accent);
-      font-variant-numeric: tabular-nums;
-      line-height: 1;
-      margin: 0.5rem 0 0.25rem;
-    }
-    .tarif-period {
-      font-size: 0.8rem;
-      color: var(--fg-light);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-    }
-    .tarif-note {
-      font-size: 0.82rem;
-      color: var(--fg-light);
-      border-top: 1px solid var(--stone);
-      padding-top: 0.75rem;
-      margin-top: 0.75rem;
-    }
-    .tarif-card.featured .tarif-note { border-color: rgba(255,255,255,0.3); }
-    .tarifs-note {
-      margin-top: 2rem;
-      font-size: 0.88rem;
-      color: var(--fg-light);
-      text-align: center;
-      line-height: 1.7;
-    }
-
     /* ACTIVITÉS */
     #activites { background: var(--bg-alt); }
     .activites-grid {
@@ -886,14 +810,14 @@
 <!-- HERO -->
 <section id="hero" aria-label="Bienvenue à L'Espigoule">
   <div class="hero-bg" aria-hidden="true">
-    <img src="images/piscine.webp" alt="">
+    <img id="hero-img" src="" alt="">
   </div>
   <div class="hero-texture" aria-hidden="true"></div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Gîte de caractère · Aiguèze · Gard</p>
-    <h1 class="hero-title"><em>L'Espigoule</em></h1>
-    <p class="hero-subtitle">Une maison de pierre aux portes de la réserve naturelle des Gorges de l'Ardèche, perchée sur les falaises, entre vignoble AOC Côtes du Rhône et garrigue provençale.</p>
+    <p class="hero-eyebrow" id="hero-eyebrow"></p>
+    <h1 class="hero-title"><em id="hero-titre"></em></h1>
+    <p class="hero-subtitle" id="hero-soustitre"></p>
     <div>
       <a href="#contact" class="btn btn-primary">Réserver</a>
       <a href="#presentation" class="btn btn-outline">Découvrir</a>
@@ -906,58 +830,8 @@
 <section id="presentation" aria-labelledby="pres-title">
   <div class="container">
     <div class="presentation-grid">
-      <div>
-        <p class="section-label">Le gîte</p>
-        <h2 class="section-title" id="pres-title">Un havre de pierre <em>et de garrigue</em></h2>
-        <p class="text-lead">L'Espigoule est un gîte de caractère niché à Aiguèze, membre des <strong>Plus Beaux Villages de France</strong>, perché sur une falaise à la croisée de la vallée du Rhône et de la Provence. Ruelles pavées, façades en vieilles pierres, panorama jusqu'au Mont Ventoux - et à deux pas, la rivière pour une pause fraîcheur.</p>
-        <div class="highlights" style="margin-top:2rem;">
-          <div class="highlight-item">
-            <span class="hi-icon" aria-hidden="true">🏠</span>
-            <div>
-              <span class="hi-label">Surface</span>
-              <span class="hi-value">90 m²</span>
-            </div>
-          </div>
-          <div class="highlight-item">
-            <span class="hi-icon" aria-hidden="true">👥</span>
-            <div>
-              <span class="hi-label">Capacité</span>
-              <span class="hi-value">6 personnes</span>
-            </div>
-          </div>
-          <div class="highlight-item">
-            <span class="hi-icon" aria-hidden="true">🛏</span>
-            <div>
-              <span class="hi-label">Chambres</span>
-              <span class="hi-value">3 chambres</span>
-            </div>
-          </div>
-          <div class="highlight-item">
-            <span class="hi-icon" aria-hidden="true">🏊</span>
-            <div>
-              <span class="hi-label">Piscine</span>
-              <span class="hi-value">Privée</span>
-            </div>
-          </div>
-          <div class="highlight-item">
-            <span class="hi-icon" aria-hidden="true">❄️</span>
-            <div>
-              <span class="hi-label">Climatisation</span>
-              <span class="hi-value">Toutes pièces</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="presentation-visual">
-        <div class="visual-main">
-          <img src="images/terrasse.png" alt="Terrasse de L'Espigoule">
-          <div class="visual-main-caption">L'Espigoule · Aiguèze</div>
-        </div>
-        <div class="visual-accent">
-          <img src="images/salon.jpg" alt="Salon de L'Espigoule">
-        </div>
-        <div class="visual-badge" aria-hidden="true">Plus Beau Village</div>
-      </div>
+      <div id="pres-texte"></div>
+      <div class="presentation-visual" id="pres-visual"></div>
     </div>
   </div>
 </section>
@@ -968,36 +842,7 @@
     <p class="section-label">Photos</p>
     <h2 class="section-title" id="galerie-title">Le gîte en <em>images</em></h2>
   </div>
-  <div class="galerie-grid">
-    <button class="galerie-item galerie-large" onclick="openLightbox(0)" aria-label="Voir la piscine en grand">
-      <img src="images/piscine.webp" alt="Piscine privée">
-      <div class="galerie-caption">Piscine privée</div>
-    </button>
-    <button class="galerie-item" onclick="openLightbox(1)" aria-label="Voir la terrasse en grand">
-      <img src="images/terrasse.png" alt="Terrasse ombragée">
-      <div class="galerie-caption">Terrasse</div>
-    </button>
-    <button class="galerie-item" onclick="openLightbox(2)" aria-label="Voir le salon en grand">
-      <img src="images/salon.jpg" alt="Salon">
-      <div class="galerie-caption">Salon</div>
-    </button>
-    <button class="galerie-item" onclick="openLightbox(3)" aria-label="Voir la cuisine en grand">
-      <img src="images/cuisine.png" alt="Cuisine équipée">
-      <div class="galerie-caption">Cuisine</div>
-    </button>
-    <button class="galerie-item" onclick="openLightbox(4)" aria-label="Voir la chambre 1 en grand">
-      <img src="images/chambre_1.webp" alt="Chambre 1">
-      <div class="galerie-caption">Chambre 1</div>
-    </button>
-    <button class="galerie-item" onclick="openLightbox(5)" aria-label="Voir la chambre 2 en grand">
-      <img src="images/chambre_2.webp" alt="Chambre 2">
-      <div class="galerie-caption">Chambre 2</div>
-    </button>
-    <button class="galerie-item" onclick="openLightbox(6)" aria-label="Voir la chambre 3 en grand">
-      <img src="images/chambre_3.jpg" alt="Chambre 3">
-      <div class="galerie-caption">Chambre 3</div>
-    </button>
-  </div>
+  <div class="galerie-grid" id="galerie-grid"></div>
 </section>
 
 <!-- LIGHTBOX -->
@@ -1017,46 +862,7 @@
   <div class="container">
     <p class="section-label">Confort &amp; prestations</p>
     <h2 class="section-title" id="equip-title">Tout pour <em>une escapade parfaite</em></h2>
-    <div class="equip-grid">
-      <div class="equip-card">
-        <span class="equip-icon" aria-hidden="true">🍽</span>
-        <h3 class="equip-title">Cuisine &amp; vie</h3>
-        <ul class="equip-list">
-          <li>Cuisine équipée</li>
-          <li>Lave-vaisselle</li>
-          <li>Réfrigérateur et congélateur</li>
-          <li>Lave-linge</li>
-          <li>Salon avec canapés</li>
-          <li>Télévision</li>
-          <li>Wi-Fi haut débit</li>
-        </ul>
-      </div>
-      <div class="equip-card">
-        <span class="equip-icon" aria-hidden="true">🛏</span>
-        <h3 class="equip-title">Chambres &amp; bains</h3>
-        <ul class="equip-list">
-          <li>3 chambres climatisées</li>
-          <li>Literie de qualité</li>
-          <li>Linge de lit fourni</li>
-          <li>2 salles de bain</li>
-          <li>Serviettes incluses</li>
-          <li>Produits de toilette</li>
-        </ul>
-      </div>
-      <div class="equip-card">
-        <span class="equip-icon" aria-hidden="true">🌿</span>
-        <h3 class="equip-title">Extérieur</h3>
-        <ul class="equip-list">
-          <li>Piscine privée chauffée</li>
-          <li>Terrasse ombragée</li>
-          <li>Salon de jardin</li>
-          <li>Barbecue</li>
-          <li>Jardin clos</li>
-          <li>Parking privé</li>
-          <li>Terrain de pétanque</li>
-        </ul>
-      </div>
-    </div>
+    <div class="equip-grid" id="equip-grid"></div>
   </div>
 </section>
 
@@ -1064,84 +870,15 @@
 <section id="territoire" aria-labelledby="terr-title">
   <div class="container">
     <p class="section-label">Situation &amp; découvertes</p>
-    <h2 class="section-title" id="terr-title">Au coeur d'un <em>territoire d'exception</em></h2>
-    <p class="text-lead">Aiguèze est perché sur une falaise aux portes de la réserve naturelle des Gorges de l'Ardèche, membre de l'association <strong>Les Plus Beaux Villages de France</strong> depuis 2005 - premier village du Gard à obtenir ce label. Vignoble AOC Côtes du Rhône, patrimoine médiéval et rivière fraîche : tout est là.</p>
-
-    <div class="village-highlights">
-      <div class="vhl-item">
-        <span class="vhl-num">212</span>
-        <span class="vhl-label">habitants · authenticité préservée</span>
-      </div>
-      <div class="vhl-item">
-        <span class="vhl-num">2005</span>
-        <span class="vhl-label">labellisé Plus Beau Village de France</span>
-      </div>
-      <div class="vhl-item">
-        <span class="vhl-num">XI<sup>e</sup></span>
-        <span class="vhl-label">siècle · forteresse médiévale</span>
-      </div>
-    </div>
-
+    <h2 class="section-title" id="terr-title"></h2>
+    <p class="text-lead" id="terr-texte"></p>
+    <div class="village-highlights" id="terr-chiffres"></div>
     <div class="territoire-grid">
-      <div class="map-placeholder">
-        <img src="aigueze-vue-depuis-lardeche.webp" alt="Vue d'Aiguèze depuis l'Ardèche">
-        <div class="map-caption">Aiguèze · Vue depuis l'Ardèche</div>
-      </div>
-      <div class="pois">
-        <div class="poi">
-          <span class="poi-distance">sur place</span>
-          <div>
-            <div class="poi-name">Chemin de ronde "Le Castelas"</div>
-            <div class="poi-desc">Promenade le long des anciennes fortifications - tour sarrasine, donjon médiéval - avec panorama sur les Gorges de l'Ardèche et le Mont Ventoux. Éclairé la nuit.</div>
-          </div>
-        </div>
-        <div class="poi">
-          <span class="poi-distance">sur place</span>
-          <div>
-            <div class="poi-name">Place du Jeu de Paume</div>
-            <div class="poi-desc">Place ombragée de platanes - terrasses, boules, marché estival chaque jeudi matin (miel, olives, vins AOC Côtes du Rhône)</div>
-          </div>
-        </div>
-        <div class="poi">
-          <span class="poi-distance">sur place</span>
-          <div>
-            <div class="poi-name">Église Saint-Roch &amp; village</div>
-            <div class="poi-desc">Clocher, fresque et plafond peint - ruelles pavées en vieilles pierres et "Facéties d'Aiguezois", clins d'oeil humoristiques cachés dans le village</div>
-          </div>
-        </div>
-        <div class="poi">
-          <span class="poi-distance">à pied</span>
-          <div>
-            <div class="poi-name">Domaine de l'Amandier</div>
-            <div class="poi-desc">Dégustation de vins AOC Côtes du Rhône dans un moulin à huile du XVI<sup>e</sup> siècle avec sa meule d'origine</div>
-          </div>
-        </div>
-        <div class="poi">
-          <span class="poi-distance">à pied</span>
-          <div>
-            <div class="poi-name">Rocher de Castelviel</div>
-            <div class="poi-desc">Randonnée à travers garrigue et sentiers boisés jusqu'à un panorama exceptionnel sur les Gorges de l'Ardèche</div>
-          </div>
-        </div>
-        <div class="poi">
-          <span class="poi-distance">30 km</span>
-          <div>
-            <div class="poi-name">Grotte Chauvet - Pont d'Arc</div>
-            <div class="poi-desc">Réplique de la grotte ornée la plus ancienne du monde (Patrimoine UNESCO)</div>
-          </div>
-        </div>
-        <div class="poi">
-          <span class="poi-distance">45 km</span>
-          <div>
-            <div class="poi-name">Pont du Gard</div>
-            <div class="poi-desc">Aqueduc romain du I<sup>er</sup> siècle, chef-d'oeuvre de l'ingénierie antique (Patrimoine UNESCO)</div>
-          </div>
-        </div>
-      </div>
+      <div class="map-placeholder" id="terr-image"></div>
+      <div class="pois" id="terr-pois"></div>
     </div>
   </div>
 </section>
-
 
 <!-- ACTIVITÉS -->
 <section id="activites" aria-labelledby="activites-title">
@@ -1149,94 +886,7 @@
     <p class="section-label">Dans la région</p>
     <h2 class="section-title" id="activites-title">Des activités pour <em>tous les goûts</em></h2>
     <p class="text-lead">Les Gorges de l'Ardèche, réserve naturelle classée, offrent un terrain de jeu exceptionnel à deux pas du gîte - eau, nature et patrimoine réunis.</p>
-    <div class="activites-grid">
-      <div class="activite-card">
-        <div class="activite-header" style="background: linear-gradient(135deg, #1a6b8a 0%, #0d4a63 100%);">
-          <span class="activite-icon" aria-hidden="true">🛶</span>
-        </div>
-        <div class="activite-body">
-          <h3 class="activite-title">Canoë-kayak</h3>
-          <p class="activite-desc">L'activité phare des Gorges de l'Ardèche. Plusieurs parcours selon votre envie : une demi-journée en famille (5 km ludiques) ou la grande traversée de 32 km sur deux jours avec bivouac en pleine nature. La descente se termine à Saint-Martin-d'Ardèche, à quelques kilomètres d'Aiguèze.</p>
-          <div class="activite-tags">
-            <span class="tag">Famille</span>
-            <span class="tag">Dès 7 ans</span>
-            <span class="tag">Demi-journée ou 2 jours</span>
-          </div>
-        </div>
-      </div>
-      <div class="activite-card">
-        <div class="activite-header" style="background: linear-gradient(135deg, #2d7a4a 0%, #1a5230 100%);">
-          <span class="activite-icon" aria-hidden="true">🥾</span>
-        </div>
-        <div class="activite-body">
-          <h3 class="activite-title">Randonnée</h3>
-          <p class="activite-desc">Les sentiers des crêtes offrent des panoramas saisissants sur les gorges. Depuis Aiguèze, la balade jusqu'au rocher de Castelviel traverse garrigue et forêt méditerranéenne. La route panoramique longe les belvédères - accès libre et gratuit - pour des vues à couper le souffle sur les méandres de l'Ardèche.</p>
-          <div class="activite-tags">
-            <span class="tag">Tous niveaux</span>
-            <span class="tag">Belvédères gratuits</span>
-            <span class="tag">Garrigue</span>
-          </div>
-        </div>
-      </div>
-      <div class="activite-card">
-        <div class="activite-header" style="background: linear-gradient(135deg, #4a8ab5 0%, #2a5f80 100%);">
-          <span class="activite-icon" aria-hidden="true">🏊</span>
-        </div>
-        <div class="activite-body">
-          <h3 class="activite-title">Plage du Grain de Sel</h3>
-          <p class="activite-desc">Face aux falaises d'Aiguèze, côté Saint-Martin-d'Ardèche, accessible à pied en 15 minutes depuis le village. Plage de sable et galets ombragée par de grands arbres, avec tables de pique-nique. Labellisée <strong>Pavillon Bleu</strong> (qualité des eaux, accueil, environnement), surveillée chaque jour en juillet-août de 13h à 19h. Accès gratuit, parking payant. Équipée d'un ponton et d'un Tiralo pour les personnes à mobilité réduite. Ouverte toute l'année.</p>
-          <div class="activite-tags">
-            <span class="tag">Pavillon Bleu</span>
-            <span class="tag">15 min à pied</span>
-            <span class="tag">Accès gratuit</span>
-            <span class="tag">Surveillée juil.-août</span>
-            <span class="tag">PMR accessible</span>
-          </div>
-        </div>
-      </div>
-      <div class="activite-card">
-        <div class="activite-header" style="background: linear-gradient(135deg, #8a6a2d 0%, #5c4415 100%);">
-          <span class="activite-icon" aria-hidden="true">🍷</span>
-        </div>
-        <div class="activite-body">
-          <h3 class="activite-title">Vignoble &amp; dégustation</h3>
-          <p class="activite-desc">Le territoire est classé AOC Côtes du Rhône. Le Domaine de l'Amandier, au pied d'Aiguèze, propose des dégustations dans un moulin à huile du XVI<sup>e</sup> siècle avec sa meule d'origine. Une belle introduction aux vins de la région.</p>
-          <div class="activite-tags">
-            <span class="tag">AOC Côtes du Rhône</span>
-            <span class="tag">Sur place</span>
-            <span class="tag">XVI<sup>e</sup> siècle</span>
-          </div>
-        </div>
-      </div>
-      <div class="activite-card">
-        <div class="activite-header" style="background: linear-gradient(135deg, #6a3d8a 0%, #45265c 100%);">
-          <span class="activite-icon" aria-hidden="true">🗿</span>
-        </div>
-        <div class="activite-body">
-          <h3 class="activite-title">Grottes préhistoriques</h3>
-          <p class="activite-desc">La Grotte Chauvet 2 - Pont d'Arc (30 km) est la réplique de la grotte ornée la plus ancienne du monde, classée au Patrimoine mondial de l'UNESCO. L'Aven d'Orgnac, grand site de France, offre un spectacle souterrain féerique.</p>
-          <div class="activite-tags">
-            <span class="tag">UNESCO</span>
-            <span class="tag">30 km</span>
-            <span class="tag">Incontournable</span>
-          </div>
-        </div>
-      </div>
-      <div class="activite-card">
-        <div class="activite-header" style="background: linear-gradient(135deg, #8a4a2d 0%, #5c2d15 100%);">
-          <span class="activite-icon" aria-hidden="true">🏛</span>
-        </div>
-        <div class="activite-body">
-          <h3 class="activite-title">Patrimoine &amp; villages</h3>
-          <p class="activite-desc">Le Gard compte quatre villages des Plus Beaux Villages de France accessibles en une journée : Aiguèze, Montclus, La Roque-sur-Cèze et Lussan. Et à 45 km, le Pont du Gard, aqueduc romain du I<sup>er</sup> siècle, lui aussi classé UNESCO.</p>
-          <div class="activite-tags">
-            <span class="tag">4 Beaux Villages</span>
-            <span class="tag">Pont du Gard</span>
-            <span class="tag">45 km</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="activites-grid" id="activites-grid"></div>
   </div>
 </section>
 
@@ -1294,36 +944,7 @@
         </div>
         <button type="submit" class="btn btn-primary btn-send">Envoyer ma demande</button>
       </form>
-      <div class="contact-info">
-        <div class="info-item">
-          <div class="info-icon" aria-hidden="true">📍</div>
-          <div>
-            <div class="info-label">Adresse</div>
-            <div class="info-value">Aiguèze<br>30760 Gard, Occitanie</div>
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon" aria-hidden="true">📞</div>
-          <div>
-            <div class="info-label">Téléphone</div>
-            <div class="info-value">+33 6 00 00 00 00</div>
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon" aria-hidden="true">✉</div>
-          <div>
-            <div class="info-label">Email</div>
-            <div class="info-value">contact@lespigoule.fr</div>
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon" aria-hidden="true">🗓</div>
-          <div>
-            <div class="info-label">Séjour minimum</div>
-            <div class="info-value">1 semaine en haute saison<br>Week-end possible hors saison</div>
-          </div>
-        </div>
-      </div>
+      <div class="contact-info" id="contact-info"></div>
     </div>
   </div>
 </section>
@@ -1334,16 +955,142 @@
 </footer>
 
 <script>
-  // Lightbox
-  const photos = [
-    { src: 'images/piscine.webp',   alt: 'Piscine privée' },
-    { src: 'images/terrasse.png',   alt: 'Terrasse ombragée' },
-    { src: 'images/salon.jpg',      alt: 'Salon' },
-    { src: 'images/cuisine.png',    alt: 'Cuisine équipée' },
-    { src: 'images/chambre_1.webp', alt: 'Chambre 1' },
-    { src: 'images/chambre_2.webp', alt: 'Chambre 2' },
-    { src: 'images/chambre_3.jpg',  alt: 'Chambre 3' },
-  ];
+  // ─── Rendu depuis config.js ────────────────────────────────
+  function renderFromConfig() {
+    const C = CONFIG;
+
+    // Héro
+    document.getElementById('hero-img').src           = C.hero.image;
+    document.getElementById('hero-eyebrow').textContent = C.hero.accroche;
+    document.getElementById('hero-titre').textContent  = C.hero.titre;
+    document.getElementById('hero-soustitre').textContent = C.hero.sousTitre;
+
+    // Présentation
+    document.getElementById('pres-texte').innerHTML = `
+      <p class="section-label">Le gîte</p>
+      <h2 class="section-title" id="pres-title">${C.presentation.titre} <em>${C.presentation.titreEm}</em></h2>
+      <p class="text-lead">${C.presentation.texte}</p>
+      <div class="highlights" style="margin-top:2rem;">
+        ${C.presentation.infos.map(h => `
+          <div class="highlight-item">
+            <span class="hi-icon" aria-hidden="true">${h.icone}</span>
+            <div>
+              <span class="hi-label">${h.label}</span>
+              <span class="hi-value">${h.valeur}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    document.getElementById('pres-visual').innerHTML = `
+      <div class="visual-main">
+        <img src="${C.presentation.imageMain.src}" alt="${C.presentation.imageMain.alt}">
+        <div class="visual-main-caption">L'Espigoule · Aiguèze</div>
+      </div>
+      <div class="visual-accent">
+        <img src="${C.presentation.imageAccent.src}" alt="${C.presentation.imageAccent.alt}">
+      </div>
+      <div class="visual-badge" aria-hidden="true">Plus Beau Village</div>
+    `;
+
+    // Galerie + lightbox (tableau partagé)
+    photos = C.galerie.map(p => ({ src: p.src, alt: p.legende }));
+    document.getElementById('galerie-grid').innerHTML = C.galerie.map((p, i) => `
+      <button class="galerie-item${i === 0 ? ' galerie-large' : ''}"
+              onclick="openLightbox(${i})"
+              aria-label="Voir ${p.legende.toLowerCase()} en grand">
+        <img src="${p.src}" alt="${p.legende}">
+        <div class="galerie-caption">${p.legende}</div>
+      </button>
+    `).join('');
+
+    // Équipements
+    document.getElementById('equip-grid').innerHTML = C.equipements.map(e => `
+      <div class="equip-card">
+        <span class="equip-icon" aria-hidden="true">${e.icone}</span>
+        <h3 class="equip-title">${e.titre}</h3>
+        <ul class="equip-list">
+          ${e.liste.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+      </div>
+    `).join('');
+
+    // Territoire
+    document.getElementById('terr-title').innerHTML =
+      `${C.territoire.titre} <em>${C.territoire.titreEm}</em>`;
+    document.getElementById('terr-texte').innerHTML = C.territoire.texte;
+    document.getElementById('terr-chiffres').innerHTML = C.territoire.chiffres.map(c => `
+      <div class="vhl-item">
+        <span class="vhl-num">${c.valeur}</span>
+        <span class="vhl-label">${c.label}</span>
+      </div>
+    `).join('');
+    document.getElementById('terr-image').innerHTML = `
+      <img src="${C.territoire.image.src}" alt="${C.territoire.image.alt}">
+      <div class="map-caption">${C.territoire.image.legende}</div>
+    `;
+    document.getElementById('terr-pois').innerHTML = C.territoire.pointsInteret.map(p => `
+      <div class="poi">
+        <span class="poi-distance">${p.distance}</span>
+        <div>
+          <div class="poi-name">${p.nom}</div>
+          <div class="poi-desc">${p.desc}</div>
+        </div>
+      </div>
+    `).join('');
+
+    // Activités
+    document.getElementById('activites-grid').innerHTML = C.activites.map(a => `
+      <div class="activite-card">
+        <div class="activite-header" style="background: ${a.couleur};">
+          <span class="activite-icon" aria-hidden="true">${a.icone}</span>
+        </div>
+        <div class="activite-body">
+          <h3 class="activite-title">${a.titre}</h3>
+          <p class="activite-desc">${a.desc}</p>
+          <div class="activite-tags">
+            ${a.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // Contact
+    document.getElementById('contact-info').innerHTML = `
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">📍</div>
+        <div>
+          <div class="info-label">Adresse</div>
+          <div class="info-value">${C.contact.adresse.replace('\n', '<br>')}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">📞</div>
+        <div>
+          <div class="info-label">Téléphone</div>
+          <div class="info-value">${C.contact.telephone}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">✉</div>
+        <div>
+          <div class="info-label">Email</div>
+          <div class="info-value">${C.contact.email}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">🗓</div>
+        <div>
+          <div class="info-label">Séjour minimum</div>
+          <div class="info-value">${C.contact.sejourMinimum.replace('\n', '<br>')}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // ─── Lightbox ─────────────────────────────────────────────
+  let photos = [];
   let currentIdx = 0;
   const lightbox  = document.getElementById('lightbox');
   const lbImg     = document.getElementById('lb-img');
@@ -1384,10 +1131,10 @@
     if (e.key === 'ArrowRight') showPhoto(currentIdx + 1);
   });
 
-  // Nav scroll
-  const nav = document.getElementById('nav');
+  // ─── Navigation scrollée ──────────────────────────────────
+  const nav    = document.getElementById('nav');
   const toggle = document.getElementById('nav-toggle');
-  const links = document.getElementById('nav-links');
+  const links  = document.getElementById('nav-links');
 
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
@@ -1405,6 +1152,7 @@
     });
   });
 
+  // ─── Formulaire ───────────────────────────────────────────
   document.getElementById('contact-form').addEventListener('submit', e => {
     e.preventDefault();
     document.getElementById('form-success').style.display = 'block';
@@ -1416,10 +1164,13 @@
 
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('arrivee').min = today;
-  document.getElementById('depart').min = today;
+  document.getElementById('depart').min  = today;
   document.getElementById('arrivee').addEventListener('change', () => {
     document.getElementById('depart').min = document.getElementById('arrivee').value;
   });
+
+  // ─── Lancement ────────────────────────────────────────────
+  renderFromConfig();
 </script>
 
 </body>
