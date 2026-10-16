@@ -1041,10 +1041,18 @@
     `).join('');
 
     // Activités
-    document.getElementById('activites-grid').innerHTML = C.activites.map(a => `
+    document.getElementById('activites-grid').innerHTML = C.activites.map(a => {
+      const headerStyle = a.image
+        ? `background-image: url('${a.image}'); background-size: cover; background-position: center;`
+        : `background: ${a.couleur};`;
+      const overlayStyle = a.image
+        ? `position:absolute;inset:0;background:${a.couleur};opacity:0.55;`
+        : `display:none;`;
+      return `
       <div class="activite-card">
-        <div class="activite-header" style="background: ${a.couleur};">
-          <span class="activite-icon" aria-hidden="true">${a.icone}</span>
+        <div class="activite-header" style="${headerStyle} position:relative;">
+          <div style="${overlayStyle}"></div>
+          <span class="activite-icon" style="position:relative;z-index:1;" aria-hidden="true">${a.icone}</span>
         </div>
         <div class="activite-body">
           <h3 class="activite-title">${a.titre}</h3>
@@ -1053,8 +1061,8 @@
             ${a.tags.map(t => `<span class="tag">${t}</span>`).join('')}
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
 
     // Contact
     document.getElementById('contact-info').innerHTML = `
@@ -1083,7 +1091,21 @@
         <div class="info-icon" aria-hidden="true">🗓</div>
         <div>
           <div class="info-label">Séjour minimum</div>
-          <div class="info-value">${C.contact.sejourMinimum.replace('\n', '<br>')}</div>
+          <div class="info-value">${C.contact.sejourMinimum.replace(/\n/g, '<br>')}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">🚗</div>
+        <div>
+          <div class="info-label">Accès</div>
+          <div class="info-value">${C.contact.acces.replace(/\n/g, '<br>')}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" aria-hidden="true">🐾</div>
+        <div>
+          <div class="info-label">Animaux</div>
+          <div class="info-value">${C.contact.animaux}</div>
         </div>
       </div>
     `;

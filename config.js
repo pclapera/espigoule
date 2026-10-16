@@ -14,40 +14,68 @@
 // ✅ = image actuellement utilisée sur le site
 // 💤 = image disponible mais pas encore utilisée
 //
-// Dossier images/ (intérieur du gîte) :
-//   ✅ IMG.piscine      → héro + galerie
-//   ✅ IMG.terrasse     → présentation (grande photo) + galerie
-//   ✅ IMG.salon        → présentation (petite photo) + galerie
-//   ✅ IMG.cuisine      → galerie
-//   ✅ IMG.chambre1     → galerie
-//   ✅ IMG.chambre2     → galerie
-//   ✅ IMG.chambre3     → galerie
+// FORMAT RECOMMANDÉ — légende de lecture :
+//   Ratio   = proportion largeur:hauteur (ex. 16:9 = paysage large)
+//   Min px  = dimensions minimales pour un rendu net sur grand écran
+//   Sujet   = ce qui doit être visible au centre (le recadrage se fait
+//             automatiquement sur les bords, pas au centre)
 //
-// Racine du projet (extérieur / région) :
-//   ✅ IMG.aigueze      → section territoire
-//   💤 IMG.baignade     → disponible, non utilisée
-//   💤 IMG.baignade2    → disponible, non utilisée
-//   💤 IMG.grotteChauvet → disponible, non utilisée
-//   💤 IMG.canoe        → disponible, non utilisée
-//   ⚠️ IMG.patrimoine  → format HEIC, non supporté par les navigateurs
+// Formats de fichier conseillés : .webp (meilleur compromis qualité/poids)
+//   ou .jpg. Éviter .png pour les photos (fichiers trop lourds).
+//   Le format .HEIC (iPhone) n'est pas supporté par les navigateurs web :
+//   convertir en .jpg avant d'utiliser.
 
 const IMG = {
-  // Intérieur du gîte
-  piscine:       "images/piscine.webp",
-  terrasse:      "images/terrasse.png",
-  salon:         "images/salon.jpg",
-  cuisine:       "images/cuisine.png",
-  chambre1:      "images/chambre_1.webp",
-  chambre2:      "images/chambre_2.webp",
-  chambre3:      "images/chambre_3.jpg",
 
-  // Extérieur / région
-  aigueze:       "aigueze-vue-depuis-lardeche.webp",
+  // ── Héro (fond plein écran) ────────────────────────────────
+  // Ratio : 16:9 ou plus large  |  Min : 1920 x 1080 px
+  // Sujet : scène emblématique centrée (piscine, extérieur, vue)
+  // La partie haute et basse est partiellement masquée par le texte.
+  piscine: "images/piscine.webp",
+
+  // ── Section présentation - grande photo ───────────────────
+  // Ratio : 4:3 (paysage)  |  Min : 900 x 675 px
+  // Sujet : extérieur du gîte, terrasse ou jardin
+  terrasse: "images/terrasse.png",
+
+  // ── Section présentation - petite vignette carrée ─────────
+  // Ratio : 1:1 (carré)  |  Min : 500 x 500 px
+  // Sujet : détail intérieur (salon, cuisine, coin cosy)
+  // Les bords latéraux ou haut/bas seront rognés.
+  salon: "images/salon.jpg",
+
+  // ── Galerie - photos intérieur ────────────────────────────
+  // Ratio : 4:3 (paysage)  |  Min : 900 x 675 px
+  // Sujet : pièce entière, cadrage horizontal de préférence
+  cuisine:  "images/cuisine.png",
+  chambre1: "images/chambre_1.webp",
+  chambre2: "images/chambre_2.webp",
+  chambre3: "images/chambre_3.jpg",
+
+  // ── Section territoire - photo du village ─────────────────
+  // Ratio : 4:3 (paysage)  |  Min : 900 x 675 px
+  // Sujet : vue panoramique d'Aiguèze ou des gorges, centré
+  aigueze: "aigueze-vue-depuis-lardeche.webp",
+
+  // ── Photos disponibles non utilisées ──────────────────────
+  // 💤 Pourraient servir dans les cartes activités ou une future galerie
   baignade:      "baignade ardèche.webp",
   baignade2:     "baignade ardèche_1.jpg",
   grotteChauvet: "grotte-Chauvet-2-Ardeche.jpg",
   canoe:         "Nous_canoé_ardèche.JPG",
-  // patrimoine: "Patrimoine_village.HEIC",  ← format HEIC non supporté, à convertir en .jpg
+  // patrimoine: "Patrimoine_village.HEIC",  ← HEIC non supporté, convertir en .jpg
+
+  // ── Vignettes des cartes activités ────────────────────────
+  // Ratio : ~4:1 (très large, très peu haut)  |  Min : 800 x 200 px
+  // Le rendu dans la carte fait 100 px de haut sur toute la largeur.
+  // Choisir une photo avec le sujet principal bien centré verticalement.
+  // Une photo paysage normale convient : seule la bande centrale est visible.
+  vignBaignade:  "vignettes/baignade ardèche.webp",
+  vignGrotte:    "vignettes/grotte-Chauvet-2-Ardeche.jpg",
+  vignCanoe:     "vignettes/Nous_canoé_ardèche.JPG",
+  vignPatrimoine:"vignettes/Patrimoine_village.jpg",
+  vignVignoble:  "vignettes/vignoble.jpg",
+  vignRandonnee: "vignettes/le-rocher-de-castelviel.jpg",
 };
 
 
@@ -208,6 +236,7 @@ const CONFIG = {
     {
       icone:   "🛶",
       couleur: "linear-gradient(135deg, #1a6b8a 0%, #0d4a63 100%)",
+      image:   IMG.vignCanoe,
       titre:   "Canoë-kayak",
       desc: "L'activité phare des Gorges de l'Ardèche. Plusieurs parcours selon votre envie : une demi-journée en famille (5 km ludiques) ou la grande traversée de 32 km sur deux jours avec bivouac en pleine nature. La descente se termine à Saint-Martin-d'Ardèche, à quelques kilomètres d'Aiguèze.",
       tags: ["Famille", "Dès 7 ans", "Demi-journée ou 2 jours"],
@@ -215,6 +244,7 @@ const CONFIG = {
     {
       icone:   "🥾",
       couleur: "linear-gradient(135deg, #2d7a4a 0%, #1a5230 100%)",
+      image:   IMG.vignRandonnee,
       titre:   "Randonnée",
       desc: "Les sentiers des crêtes offrent des panoramas saisissants sur les gorges. Depuis Aiguèze, la balade jusqu'au rocher de Castelviel traverse garrigue et forêt méditerranéenne. La route panoramique longe les belvédères - accès libre et gratuit - pour des vues à couper le souffle sur les méandres de l'Ardèche.",
       tags: ["Tous niveaux", "Belvédères gratuits", "Garrigue"],
@@ -222,6 +252,7 @@ const CONFIG = {
     {
       icone:   "🏊",
       couleur: "linear-gradient(135deg, #4a8ab5 0%, #2a5f80 100%)",
+      image:   IMG.vignBaignade,
       titre:   "Plage du Grain de Sel",
       // HTML autorisé dans desc
       desc: "Face aux falaises d'Aiguèze, côté Saint-Martin-d'Ardèche, accessible à pied en 15 minutes depuis le village. Plage de sable et galets ombragée par de grands arbres, avec tables de pique-nique. Labellisée <strong>Pavillon Bleu</strong> (qualité des eaux, accueil, environnement), surveillée chaque jour en juillet-août de 13h à 19h. Accès gratuit, parking payant. Ouverte toute l'année.",
@@ -230,6 +261,7 @@ const CONFIG = {
     {
       icone:   "🍷",
       couleur: "linear-gradient(135deg, #8a6a2d 0%, #5c4415 100%)",
+      image:   IMG.vignVignoble,
       titre:   "Vignoble & dégustation",
       // HTML autorisé dans desc
       desc: "Le territoire est classé AOC Côtes du Rhône. Le Domaine de l'Amandier, au pied d'Aiguèze, propose des dégustations dans un moulin à huile du XVI<sup>e</sup> siècle avec sa meule d'origine. Une belle introduction aux vins de la région.",
@@ -238,6 +270,7 @@ const CONFIG = {
     {
       icone:   "🗿",
       couleur: "linear-gradient(135deg, #6a3d8a 0%, #45265c 100%)",
+      image:   IMG.vignGrotte,
       titre:   "Grottes préhistoriques",
       desc: "La Grotte Chauvet 2 - Pont d'Arc (30 km) est la réplique de la grotte ornée la plus ancienne du monde, classée au Patrimoine mondial de l'UNESCO. L'Aven d'Orgnac, grand site de France, offre un spectacle souterrain féerique.",
       tags: ["UNESCO", "30 km", "Incontournable"],
@@ -245,6 +278,7 @@ const CONFIG = {
     {
       icone:   "🏛",
       couleur: "linear-gradient(135deg, #8a4a2d 0%, #5c2d15 100%)",
+      image:   IMG.vignPatrimoine,
       titre:   "Patrimoine & villages",
       // HTML autorisé dans desc
       desc: "Le Gard compte quatre villages des Plus Beaux Villages de France accessibles en une journée : Aiguèze, Montclus, La Roque-sur-Cèze et Lussan. Et à 45 km, le Pont du Gard, aqueduc romain du I<sup>er</sup> siècle, lui aussi classé UNESCO.",
@@ -258,5 +292,7 @@ const CONFIG = {
     telephone:     "+33 6 00 00 00 00",
     email:         "contact@lespigoule.fr",
     sejourMinimum: "1 semaine en haute saison\nWeek-end possible hors saison",
+    acces:         "~20 min depuis la sortie autoroute\nBollène (A7) ou Pont-Saint-Esprit\nParking 2 voitures sur place",
+    animaux:       "Non acceptés",
   },
 };
