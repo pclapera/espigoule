@@ -295,4 +295,32 @@ const CONFIG = {
     acces:         "~20 min depuis la sortie autoroute\nBollène (A7) ou Pont-Saint-Esprit\nParking 2 voitures sur place",
     animaux:       "Non acceptés",
   },
+
+  // ─── MENTIONS LÉGALES & RGPD ────────────────────────────────
+  // Remplissez les champs ci-dessous avec vos informations réelles.
+  // Ces informations sont affichées dans le pied de page du site.
+  // Elles sont obligatoires pour tout site collectant des données
+  // personnelles (formulaire de contact) en vertu du RGPD et de
+  // la loi française (Loi pour la Confiance dans l'Économie Numérique).
+  legal: {
+
+    // Propriétaire du site et responsable du traitement des données
+    // (votre prénom, nom ou raison sociale)
+    proprietaire: "Prénom NOM",
+
+    // Adresse complète du responsable
+    adresse: "Aiguèze, 30760 Gard",
+
+    // Adresse email de contact pour les droits RGPD
+    emailRgpd: "contact@lespigoule.fr",
+
+    // Hébergeur du site (à renseigner une fois le site mis en ligne)
+    // Exemples : "OVHcloud - 2 rue Kellermann, 59100 Roubaix"
+    //            "Infomaniak Network SA - Rue Eugène-Marziano 25, 1227 Genève"
+    //            "GitHub Pages - GitHub Inc., 88 Colin P. Kelly Jr. St., San Francisco"
+    hebergeur: "A renseigner apres mise en ligne",
+
+    // Annee de creation du site (pour le copyright)
+    anneeCreation: 2025,
+  },
 };

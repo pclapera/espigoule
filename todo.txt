@@ -44,13 +44,18 @@ PRIORITÉ MOYENNE
 PRIORITÉ BASSE / LONG TERME
 ----------------------------
 [ ] Nom de domaine propre
-    - Exemples : lespigoule.fr, gite-espigoule.fr, gite-aigueze.fr
-    - Coût : environ 10-15 EUR/an
+    - Recommandation 1 : lespigoule.fr (court, mémorisable, correspond au nom du gîte)
+    - Recommandation 2 : gite-espigoule.fr (si lespigoule.fr est pris)
+    - Recommandation 3 : gite-aigueze.fr (bon pour le SEO local, moins brandé)
+    - Éviter les accents dans le domaine (aigueze et non aiguèze)
+    - Préférer .fr au .com pour une clientèle française
+    - Vérifier la disponibilité sur afnic.fr ou directement chez un registrar
+    - Coût : environ 7-12 EUR/an chez OVH, Infomaniak ou Gandi
     - Nécessite un hébergement web pour mettre le site en ligne
 
 [ ] Mettre le site en ligne
     - Choisir un hébergeur (OVH, Infomaniak, o2switch...)
-    - Transférer le dossier complet (index.html + images/)
+    - Transférer le dossier complet (espigoule.html + config.js + images/ + vignettes/)
     - Tester toutes les fonctionnalités une fois en ligne
 
 [ ] Google My Business
