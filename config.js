@@ -306,7 +306,7 @@ const CONFIG = {
 
     // Propriétaire du site et responsable du traitement des données
     // (votre prénom, nom ou raison sociale)
-    proprietaire: "Prénom NOM",
+    proprietaire: "L'Espigoule",
 
     // Adresse complète du responsable
     adresse: "Aiguèze, 30760 Gard",
@@ -321,6 +321,6 @@ const CONFIG = {
     hebergeur: "A renseigner apres mise en ligne",
 
     // Annee de creation du site (pour le copyright)
-    anneeCreation: 2025,
+    anneeCreation: 2026,
   },
 };
