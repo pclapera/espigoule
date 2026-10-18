@@ -69,3 +69,6 @@ NOTES
 - Le formulaire de contact est fonctionnel visuellement, il faut juste
   le connecter à un service d'envoi d'email
 - Les tarifs ont été volontairement retirés du site (demande sur devis)
+
+
+tedtsttsst
